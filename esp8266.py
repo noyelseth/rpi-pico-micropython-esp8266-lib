@@ -459,7 +459,7 @@ class ESP8266:
             return 0, None
             
         
-    def doHttpPost(self,host,path,user_agent,content_type,content,port=80):
+    def doHttpPost(self,host,path,user_agent="RPi-Pico",content_type,content,port=80):
         """
         This fucntion use to complete a HTTP Post operation
         
