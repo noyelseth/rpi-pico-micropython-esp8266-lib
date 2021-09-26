@@ -84,7 +84,7 @@ class ESP8266:
                 break
         
         while self.__uartObj.any()>0:
-            self.__rxData += self.__uartObj.read(1024)
+            self.__rxData += self.__uartObj.read(UART_Rx_BUFFER_LENGTH)
             
         #print(self.__rxData)
         if ESP8266_OK_STATUS in self.__rxData:
@@ -106,10 +106,14 @@ class ESP8266:
             True if communication success with the ESP8266
             False if unable to communication with the ESP8266
         """
-        if ESP8266_OK_STATUS in self._sendToESP8266("AT\r\n"):
-            return True
+        retData = self._sendToESP8266("AT\r\n")
+        if(retData != None):
+            if ESP8266_OK_STATUS in retData:
+                return True
+            else:
+                return False
         else:
-            return False
+            False
     
     def reStart(self):
         """
@@ -119,13 +123,16 @@ class ESP8266:
             True if Reset successfully done with the ESP8266
             False if unable to reset the ESP8266
         """
-        if ESP8266_OK_STATUS in self._sendToESP8266("AT+RST\r\n"):
-            time.sleep(5)
-            #self.startUP()
-            return self.startUP()
+        retData = self._sendToESP8266("AT+RST\r\n")
+        if(retData != None):
+            if ESP8266_OK_STATUS in retData:
+                time.sleep(5)
+                #self.startUP()
+                return self.startUP()
+            else:
+                return False
         else:
-            return False
-        
+            False        
         
     
     def echoING(self, enable=False):
@@ -138,13 +145,21 @@ class ESP8266:
         
         """
         if enable==False:
-            if ESP8266_OK_STATUS in self._sendToESP8266("ATE0\r\n"):
-                return True
+            retData = self._sendToESP8266("ATE0\r\n")
+            if(retData != None):
+                if ESP8266_OK_STATUS in retData:
+                    return True
+                else:
+                    return False
             else:
                 return False
         else:
-            if ESP8266_OK_STATUS in self._sendToESP8266("ATE1\r\n"):
-                return True
+            retData = self._sendToESP8266("ATE1\r\n")
+            if(retData != None):
+                if ESP8266_OK_STATUS in retData:
+                    return True
+                else:
+                    return False
             else:
                 return False
         
@@ -156,9 +171,18 @@ class ESP8266:
         Return:
             Version details on success else None
         """
-        retData = self._sendToESP8266("AT+GMR\r\n")     
-        if ESP8266_OK_STATUS in retData:
-            return retData
+        retData = self._sendToESP8266("AT+GMR\r\n")
+        if(retData != None):
+            if ESP8266_OK_STATUS in retData:
+                #print(str(retData,"utf-8"))
+                retData = str(retData).partition(r"OK")[0]
+                #print(str(retData,"utf-8"))
+                retData = retData.split(r"\r\n")
+                retData[0] = retData[0].replace("b'","")
+                retData=str(retData[0]+"\r\n"+retData[1]+"\r\n"+retData[2])
+                return retData
+            else:
+                return None
         else:
             return None
         
@@ -169,10 +193,14 @@ class ESP8266:
             True on ESP8266 restore succesfully
             False on failed to restore ESP8266
         """
-        if ESP8266_OK_STATUS in self._sendToESP8266("AT+RESTORE\r\n"):   
-            return True
+        retData = self._sendToESP8266("AT+RESTORE\r\n")
+        if(retData != None):
+            if ESP8266_OK_STATUS in retData:   
+                return True
+            else:
+                return False
         else:
-            return False
+            return None
     """    
     def chcekSYSRAM(self):
         #retData = self._sendToESP8266("AT+SYSRAM?\r\n")   
@@ -204,12 +232,15 @@ class ESP8266:
             None failed to detect the wifi's current pre-config mode
         """
         retData = self._sendToESP8266("AT+CWMODE_CUR?\r\n")
-        if "1" in retData:
-            return "STA"
-        elif "2" in retData:
-            return "SoftAP"
-        elif "3" in retData:
-            return "SoftAP+STA"
+        if(retData != None):
+            if "1" in retData:
+                return "STA"
+            elif "2" in retData:
+                return "SoftAP"
+            elif "3" in retData:
+                return "SoftAP+STA"
+            else:
+                return None
         else:
             return None
         
@@ -228,8 +259,11 @@ class ESP8266:
         """
         txData="AT+CWMODE_CUR="+str(mode)+"\r\n"
         retData = self._sendToESP8266(txData)
-        if ESP8266_OK_STATUS in retData:   
-            return True
+        if(retData!=None):
+            if ESP8266_OK_STATUS in retData:   
+                return True
+            else:
+                return False
         else:
             return False
         
@@ -245,12 +279,15 @@ class ESP8266:
         
         """
         retData = self._sendToESP8266("AT+CWMODE_DEF?\r\n")
-        if "1" in retData:
-            return "STA"
-        elif "2" in retData:
-            return "SoftAP"
-        elif "3" in retData:
-            return "SoftAP+STA"
+        if(retData!=None):
+            if "1" in retData:
+                return "STA"
+            elif "2" in retData:
+                return "SoftAP"
+            elif "3" in retData:
+                return "SoftAP+STA"
+            else:
+                return None
         else:
             return None
         
@@ -268,8 +305,11 @@ class ESP8266:
         """
         txData="AT+CWMODE_DEF="+str(mode)+"\r\n"
         retData = self._sendToESP8266(txData)
-        if ESP8266_OK_STATUS in retData:   
-            return True
+        if(retData!=None):
+            if ESP8266_OK_STATUS in retData:   
+                return True
+            else:
+                return False
         else:
             return False
         
@@ -350,8 +390,12 @@ class ESP8266:
             False on failed to disconnect the WiFi
             True on successfully disconnected
         """
-        if ESP8266_OK_STATUS in self._sendToESP8266("AT+CWQAP\r\n"):
-            return True
+        retData = self._sendToESP8266("AT+CWQAP\r\n")
+        if(retData!=None):
+            if ESP8266_OK_STATUS in retData:
+                return True
+            else:
+                return False
         else:
             return False
 
@@ -400,11 +444,14 @@ class ESP8266:
             #print(getHeader,len(getHeader))
             txData="AT+CIPSEND="+str(len(getHeader))+"\r\n"
             retData = self._sendToESP8266(txData)
-            if ">" in retData:
-                retData = self._sendToESP8266(getHeader, delay=2)
-                self._sendToESP8266("AT+CIPCLOSE\r\n")
-                retData=self.__httpResponse.parseHTTP(retData)
-                return retData, self.__httpResponse.getHTTPResponse()
+            if(retData != None):
+                if ">" in retData:
+                    retData = self._sendToESP8266(getHeader, delay=2)
+                    self._sendToESP8266("AT+CIPCLOSE\r\n")
+                    retData=self.__httpResponse.parseHTTP(retData)
+                    return retData, self.__httpResponse.getHTTPResponse()
+                else:
+                    return 0, None
             else:
                 return 0, None
         else:
@@ -435,13 +482,16 @@ class ESP8266:
             #print(postHeader,len(postHeader))
             txData="AT+CIPSEND="+str(len(postHeader))+"\r\n"
             retData = self._sendToESP8266(txData)
-            if ">" in retData:
-                retData = self._sendToESP8266(postHeader, delay=2)
-                #print(".......@@",retData)            
-                self._sendToESP8266("AT+CIPCLOSE\r\n")
-                #print(self.__httpResponse)
-                retData=self.__httpResponse.parseHTTP(retData)
-                return retData, self.__httpResponse.getHTTPResponse()
+            if(retData != None):
+                if ">" in retData:
+                    retData = self._sendToESP8266(postHeader, delay=2)
+                    #print(".......@@",retData)            
+                    self._sendToESP8266("AT+CIPCLOSE\r\n")
+                    #print(self.__httpResponse)
+                    retData=self.__httpResponse.parseHTTP(retData)
+                    return retData, self.__httpResponse.getHTTPResponse()
+                else:
+                    return 0, None
             else:
                 return 0, None
         else:
