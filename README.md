@@ -13,7 +13,9 @@
 This is a Micropython Library for RaspberryPi-Pico to communicate with ESP8266 using AT command.
 
 ## Hardware Connection
-![rpi-pico-esp8266-fritzing](https://user-images.githubusercontent.com/29272159/134862637-7109bc5b-ac92-4637-8ca6-b4d2fd6d9656.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/29272159/134862637-7109bc5b-ac92-4637-8ca6-b4d2fd6d9656.png" width="800">
+</p>
 
 ## Getting Started with Examples
 The best way to learn **Raspberry Pi Pico Micropython ESP8266 Library** is to understand the examples. 
