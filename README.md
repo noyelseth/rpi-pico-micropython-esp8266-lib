@@ -45,9 +45,9 @@ print("\r\n")
 '''
 Print ESP8266 AT comand version and SDK details
 '''
-esp8266_at_var = esp01.getVersion()
-if(esp8266_at_var != None):
-    print(esp8266_at_var)
+esp8266_at_ver = esp01.getVersion()
+if(esp8266_at_ver != None):
+    print(esp8266_at_ver)
 
 '''
 set the current WiFi in SoftAP+STA
