@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](lib-licence)
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/29272159/134866689-f3a34753-1583-441e-917b-6d599b8c0fc8.png" width="300"><img src="https://user-images.githubusercontent.com/29272159/134866581-f0d7cf42-9fc0-48bc-a859-7d74b070a3fd.png" width="150"><img src="https://user-images.githubusercontent.com/29272159/134868586-bd05f5e9-eaf2-4ac2-9688-7aca16165bf8.png" width="400">
+<img src="https://user-images.githubusercontent.com/29272159/134866689-f3a34753-1583-441e-917b-6d599b8c0fc8.png" width="250"><img src="https://user-images.githubusercontent.com/29272159/134866581-f0d7cf42-9fc0-48bc-a859-7d74b070a3fd.png" width="150"><img src="https://user-images.githubusercontent.com/29272159/134868586-bd05f5e9-eaf2-4ac2-9688-7aca16165bf8.png" width="350">
 </p>
 
 ## Description
