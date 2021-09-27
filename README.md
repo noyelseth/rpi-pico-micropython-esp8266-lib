@@ -18,8 +18,8 @@ This is a Micropython Library for RaspberryPi-Pico to communicate with ESP8266 u
 </p>
 
 ## Getting Started with Examples
-The best way to learn **Raspberry Pi Pico Micropython ESP8266 Library** is to understand the examples. 
-In the `examples` directory there are an example of complete a HTTP Get/Post Operation using ESP8266.
+This is a basic AT Command library for RaspberryPi-Pico, which simplifies the communication process with the ESP8266. 
+The best way to understand the library is with the example shown below, This example shows you how to make a GET/POST request using ESP8266 with the help of the RaspberryPi-Pico.
 
 ### How to Use Library
 ```python
