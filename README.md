@@ -36,6 +36,7 @@ led=Pin(25,Pin.OUT)
 
 ## Create an ESP8266 Object
 esp01 = ESP8266()
+esp8266_at_ver = None
 
 print("StartUP",esp01.startUP())
 print("Echo-Off",esp01.echoING())
