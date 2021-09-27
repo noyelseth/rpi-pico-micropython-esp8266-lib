@@ -1,11 +1,18 @@
 from machine import UART, Pin
-import time
 from esp8266 import ESP8266
+import time, sys
 
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("RPi-Pico MicroPython Ver:", sys.version)
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+
+## Create On-board Led object
+led=Pin(25,Pin.OUT)
+
+## Create an ESP8266 Object
 esp01 = ESP8266()
 esp8266_at_ver = None
-
-led=Pin(25,Pin.OUT)
 
 print("StartUP",esp01.startUP())
 #print("ReStart",esp01.reStart())
@@ -16,9 +23,9 @@ print("\r\n\r\n")
 '''
 Print ESP8266 AT comand version and SDK details
 '''
-esp8266_at_var = esp01.getVersion()
-if(esp8266_at_var != None):
-    print(esp8266_at_var)
+esp8266_at_ver = esp01.getVersion()
+if(esp8266_at_ver != None):
+    print(esp8266_at_ver)
 
 '''
 set the current WiFi in SoftAP+STA
