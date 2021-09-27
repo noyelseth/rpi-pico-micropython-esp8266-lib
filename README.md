@@ -1,10 +1,13 @@
 # Raspberry Pi Pico Micropython ESP8266 Library
-
 [![GitHub version](https://img.shields.io/github/release/noyelseth/rpi-pico-micropython-esp8266-lib.svg)](lib-release)
 [![GitHub download](https://img.shields.io/github/downloads/noyelseth/rpi-pico-micropython-esp8266-lib/total.svg)](lib-release)
 [![GitHub stars](https://img.shields.io/github/stars/noyelseth/rpi-pico-micropython-esp8266-lib.svg)](lib-stars)
 [![GitHub issues](https://img.shields.io/github/issues/noyelseth/rpi-pico-micropython-esp8266-lib.svg)](lib-issues)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](lib-licence)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/29272159/134866689-f3a34753-1583-441e-917b-6d599b8c0fc8.png" width="300"><img src="https://user-images.githubusercontent.com/29272159/134866581-f0d7cf42-9fc0-48bc-a859-7d74b070a3fd.png" width="150"><img src="https://user-images.githubusercontent.com/29272159/134868586-bd05f5e9-eaf2-4ac2-9688-7aca16165bf8.png" width="400">
+</p>
 
 ## Description
 This is a Micropython Library for RaspberryPi-Pico to communicate with ESP8266 using AT command.
@@ -98,3 +101,9 @@ while(1):
 You are very welcome to contribute: stability bugfixes, new hardware support, or any other improvements. Please.
 [![GitHub stars](https://img.shields.io/github/stars/noyelseth/rpi-pico-micropython-esp8266-lib.svg?style=social&label=Star)](lib-stars)
 [![GitHub forks](https://img.shields.io/github/forks/noyelseth/rpi-pico-micropython-esp8266-lib.svg?style=social&label=Fork)](lib-network)
+
+
+### License
+This project is released under The MIT License (MIT) © [Noyel Seth](https://github.com/noyelseth)
+
+ 
