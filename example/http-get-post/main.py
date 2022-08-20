@@ -74,7 +74,7 @@ while(1):
     Going to do HTTP Post Operation with www.httpbin.org/post
     '''
     post_json="{\"name\":\"Noyel\"}"
-    httpCode, httpRes = esp01.doHttpPost("www.httpbin.org","/post","RPi-Pico", "application/json",post_json,port=80)
+    httpCode, httpRes = esp01.doHttpPost("www.httpbin.org","/post", "application/json",post_json,"RPi-Pico",port=80)
     print("------------- www.httpbin.org/post Post Operation Result -----------------------")
     print("HTTP Code:",httpCode)
     print("HTTP Response:",httpRes)
